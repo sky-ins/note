@@ -1,18 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="time"
+            type="String" />
+
+        <variable
+            name="year"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记账"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="年"
+            android:text="@{year}"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/tpv"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_out"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_out"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="支出"
+            android:textColor="#f00"
+            android:textSize="15sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_year"
+            app:layout_constraintLeft_toRightOf="@+id/tv_year"
+            app:layout_constraintRight_toLeftOf="@+id/tv_in" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="支入"
+            android:textColor="#00FF04"
+            android:textSize="15sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_year"
+            app:layout_constraintLeft_toRightOf="@+id/tv_out"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tpv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="请选择时间"
+            android:onClick="choiceTime"
+            android:text="@{time}"
+            android:textColor="#000"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/bt_out"
+            app:layout_constraintTop_toBottomOf="@+id/tv_year"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_out"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="choiceTime"
+            android:text="@{time}"
+            android:textColor="#000"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@+id/tpv"
+            app:layout_constraintRight_toLeftOf="@+id/bt_in"
+            app:layout_constraintTop_toBottomOf="@+id/tv_year" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="choiceTime"
+            android:text="@{time}"
+            android:textColor="#000"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@+id/bt_out"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_year" />
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rv"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/bt_out"
+    app:layout_constraintBottom_toBottomOf="parent"
+    />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
